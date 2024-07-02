@@ -1,7 +1,7 @@
-import { Attributes } from './Attributes';
-import { Collection } from './Collection';
-import { Eventing } from './Eventing';
-import { Model } from './Model';
+import { Attributes } from './baseModels/Attributes';
+import { Collection } from './baseModels/Collection';
+import { Eventing } from './baseModels/Eventing';
+import { Model } from './baseModels/Model';
 
 export interface MeetingProps {
   circuit_key: number;
