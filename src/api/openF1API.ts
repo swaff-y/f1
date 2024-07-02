@@ -24,10 +24,45 @@ export class OpenF1API {
   fetchMeeting = async (meeting_key: number) => {
     const response = await this.client.get(`meetings`, {
       params: {
-        meeting_key: meeting_key,
+        meeting_key,
       },
     });
     if (!response.data) throw new Error('No meeting with that key found');
+
+    return response.data;
+  };
+
+  fetchDrivers = async ({
+    meeting_key,
+    session_key,
+  }: {
+    meeting_key: number;
+    session_key: number;
+  }) => {
+    const response = await this.client.get('drivers', {
+      params: {
+        meeting_key,
+        session_key,
+      },
+    });
+    if (!response.data) throw new Error('No drivers found');
+
+    return response.data;
+  };
+
+  fetchDriver = async (
+    driver_number: number,
+    meeting_key: number,
+    session_key: number
+  ) => {
+    const response = await this.client.get(`drivers`, {
+      params: {
+        driver_number,
+        meeting_key,
+        session_key,
+      },
+    });
+    if (!response.data) throw new Error('No driver with those keys found');
 
     return response.data;
   };
