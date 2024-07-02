@@ -1,13 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import { useOpenF1 } from '../context/openF1';
 import { Meeting } from '../models/Meeting';
-
-interface UseQueryResponse {
-  data: any;
-  isError: boolean;
-  isLoading: boolean;
-  isSuccess: boolean;
-}
+import { UseQueryResponse } from './types';
 
 type UseMeetingProps = {
   meeting_key: number;

@@ -1,20 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
 import { useOpenF1 } from '../context/openF1';
 import { Meeting } from '../models/Meeting';
+import { UseQueryResponse } from './types';
 
-interface UseQueryResponse {
-  data: any;
-  isError: boolean;
-  isLoading: boolean;
-  isSuccess: boolean;
-  meetingKey?: number;
-}
-
-type UseMeetingProps = {
+type UseMeetingsProps = {
   year: string;
 };
 
-export const useMeetings = ({ year }: UseMeetingProps): UseQueryResponse => {
+export const useMeetings = ({ year }: UseMeetingsProps): UseQueryResponse => {
   const { fetchMeetings } = useOpenF1();
   const result = useQuery({
     queryKey: ['meetings', year],
