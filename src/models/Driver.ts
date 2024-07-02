@@ -18,7 +18,8 @@ export interface DriverProps {
 }
 
 type DriverBuildProps = {
-  year: string;
+  meeting_key: number;
+  session_key: number;
   data: any;
 };
 
@@ -28,13 +29,10 @@ export class Driver extends Model<DriverProps> {
   }
 
   static buildDriverCollection({
-    year,
     data,
   }: DriverBuildProps): Collection<Driver, DriverProps> {
-    return new Collection<Driver, DriverProps>(
-      year,
-      data,
-      (json: DriverProps) => Driver.buildDriver(json)
+    return new Collection<Driver, DriverProps>(data, (json: DriverProps) =>
+      Driver.buildDriver(json)
     );
   }
 }
