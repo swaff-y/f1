@@ -66,4 +66,27 @@ export class OpenF1API {
 
     return response.data;
   };
+
+  fetchSessions = async ({ meeting_key }: { meeting_key: number }) => {
+    const response = await this.client.get('sessions', {
+      params: {
+        meeting_key,
+      },
+    });
+    if (!response.data) throw new Error('No sessions found');
+
+    return response.data;
+  };
+
+  fetchSession = async (meeting_key: number, session_key: number) => {
+    const response = await this.client.get(`sessions`, {
+      params: {
+        meeting_key,
+        session_key,
+      },
+    });
+    if (!response.data) throw new Error('No session with those keys found');
+
+    return response.data;
+  };
 }

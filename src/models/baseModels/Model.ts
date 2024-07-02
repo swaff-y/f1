@@ -1,6 +1,6 @@
 import { Callback } from './Eventing';
 
-interface ModelAttributes<T> {
+export interface ModelAttributes<T> {
   get<K extends keyof T>(key: K): T[K];
   set(value: T): void;
   getAll(): T;

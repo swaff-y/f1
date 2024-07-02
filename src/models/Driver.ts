@@ -35,4 +35,48 @@ export class Driver extends Model<DriverProps> {
       Driver.buildDriver(json)
     );
   }
+
+  get driver_number(): number {
+    return this.get('driver_number');
+  }
+
+  get full_name(): string {
+    return this.get('full_name');
+  }
+
+  get team_name(): string {
+    return this.get('team_name');
+  }
+
+  get team_colour(): string {
+    return this.get('team_colour');
+  }
+
+  get headshot_url(): string {
+    return this.get('headshot_url');
+  }
+
+  get broadcast_name(): string {
+    return this.get('broadcast_name');
+  }
+
+  get country_code(): string {
+    return this.get('country_code');
+  }
+
+  get name_acronym(): string {
+    return this.get('name_acronym');
+  }
+
+  get first_name(): string {
+    return this.get('first_name');
+  }
+
+  get last_name(): string {
+    return this.get('last_name');
+  }
+
+  get meeting_key(): number {
+    return this.get('meeting_key');
+  }
 }
