@@ -29,13 +29,10 @@ export class Meeting extends Model<MeetingProps> {
   }
 
   static buildMeetingCollection({
-    year,
     data,
   }: MeetingBuildProps): Collection<Meeting, MeetingProps> {
-    return new Collection<Meeting, MeetingProps>(
-      year,
-      data,
-      (json: MeetingProps) => Meeting.buildMeeting(json)
+    return new Collection<Meeting, MeetingProps>(data, (json: MeetingProps) =>
+      Meeting.buildMeeting(json)
     );
   }
 }
