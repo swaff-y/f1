@@ -1,15 +1,10 @@
-import { useQuery } from '@tanstack/react-query';
 import { Eventing } from './Eventing';
 
 export class Collection<T, K> {
   private models: T[] = [];
   events: Eventing = new Eventing();
 
-  constructor(
-    public year: string,
-    private data: any,
-    public deserialize: (json: K) => T
-  ) {}
+  constructor(private data: any, public deserialize: (json: K) => T) {}
 
   get on() {
     return this.events.on;
