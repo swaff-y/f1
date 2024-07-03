@@ -4,7 +4,11 @@ export class Collection<T, K> {
   private models: T[] = [];
   events: Eventing = new Eventing();
 
-  constructor(private data: any, public deserialize: (json: K) => T) {}
+  constructor(private data: any, public deserialize: (json: K) => T) {
+    if (data === undefined) return;
+
+    this.models = this.data.map((value: K) => this.deserialize(value));
+  }
 
   get on() {
     return this.events.on;
@@ -20,6 +24,10 @@ export class Collection<T, K> {
   }
 
   getIndex(index: number) {
-    return this.data?.[index];
+    return this.models?.[index];
+  }
+
+  getAll(): T[] {
+    return this.models;
   }
 }
