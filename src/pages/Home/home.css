@@ -1,0 +1,21 @@
+.home-container {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  padding: 0;
+}
+
+.home-pager {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  height: 2.5rem;
+}
+
+.nav-link {
+  color: var(--main-text-color);
+}
+
+.nav-link.active {
+  color: var(--secondary-text-color) !important;
+}
