@@ -1,6 +1,11 @@
+import { FC } from "react";
 import { Button, Card, Table } from "react-bootstrap";
 
-export const FilterResults = () => {
+interface FilterResultsProps {
+  selection: { label: string, id: string };
+};
+
+export const FilterResults: FC<FilterResultsProps> = ({ selection }) => {
   return (
     <Table 
       striped
@@ -9,7 +14,7 @@ export const FilterResults = () => {
     >
       <thead>
         <tr>
-          <th>#</th>
+          <th>{ selection.label }</th>
           <th>First Name</th>
           <th>Last Name</th>
           <th>Username</th>
