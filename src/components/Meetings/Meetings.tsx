@@ -3,6 +3,8 @@ import { FilterForm } from '../FilterForm/FilterForm';
 import { SectionContainer } from '../SectionContainer/SectionContainer';
 import { FilterResults } from '../FilterResults/FilterResults';
 import { useState } from 'react';
+import { useMeetings } from '../../hooks/useMeetings';
+import { FilterResultsLoader } from '../FilterResultsLoader/FilterResultsLoader';
 
 const MEETING_FILTER_OPTIONS = [
   {
@@ -28,6 +30,7 @@ const MEETING_FILTER_OPTIONS = [
 ];
 
 export const Meetings = () => {
+  const { data: meetings, isSuccess, isLoading } = useMeetings({ year: '2024' });
   const [selection, setSelection] = useState({ label: 'Year', id: 'year' });
 
   return (
@@ -39,9 +42,16 @@ export const Meetings = () => {
           selection={selection}
         />
       </SectionContainer>
-      <SectionContainer>
-        <FilterResults selection={selection}/>
-      </SectionContainer>
+      {isLoading &&
+        <SectionContainer>
+          <FilterResultsLoader />
+        </SectionContainer>
+      }
+      {isSuccess &&
+        <SectionContainer>
+          <FilterResults selection={selection} data={meetings}/>
+        </SectionContainer>
+      }
     </div>
   );
 };

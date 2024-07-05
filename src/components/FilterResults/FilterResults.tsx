@@ -1,11 +1,12 @@
 import { FC } from "react";
-import { Button, Card, Table } from "react-bootstrap";
+import { Table } from "react-bootstrap";
 
 interface FilterResultsProps {
   selection: { label: string, id: string };
+  data: any;
 };
 
-export const FilterResults: FC<FilterResultsProps> = ({ selection }) => {
+export const FilterResults: FC<FilterResultsProps> = ({ selection, data }) => {
   return (
     <Table 
       striped
@@ -15,29 +16,20 @@ export const FilterResults: FC<FilterResultsProps> = ({ selection }) => {
       <thead>
         <tr>
           <th>{ selection.label }</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
+          <th>Meeting Official Name</th>
+          <th>Country</th>
+          <th>Date</th>
         </tr>
       </thead>
       <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
+        { data.map((meeting: any, index: number) => (
+          <tr key={index}>
+            <td>{ meeting[selection.id] }</td>
+            <td>{ meeting.meeting_official_name }</td>
+            <td>{ meeting.country_name }</td>
+            <td>{ meeting.date_start }</td>
+          </tr>
+        )) }
       </tbody>
     </Table>
   );

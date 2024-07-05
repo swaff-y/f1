@@ -1,8 +1,8 @@
 import { render, screen } from '@testing-library/react';
-import { FilterResults } from './FilterResults';
+import { NavTabs } from './NavTabs';
 
 test('renders a home link', () => {
-  render(<FilterResults selection={ { label: '', id: '' } } data={[]} />);
+  render(<NavTabs />);
   const linkElement = screen.getByText(/Home/i);
   expect(linkElement).toBeInTheDocument();
 });
