@@ -10,15 +10,18 @@ import { NavTabs } from '../../components/NavTabs/NavTabs';
 const NAV_LINKS = [
   { 
     label: 'Races',
-    href: '/home/meetings'
+    href: '/home/meetings',
+    component: <Meetings />
   },
   { 
     label: 'Sessions',
-    href: '/home/sessions'
+    href: '/home/sessions',
+    component: <Sessions />
   },
   { 
     label: 'Drivers',
-    href: '/home/drivers'
+    href: '/home/drivers',
+    component: <Drivers />
   }
 ];
 
@@ -32,14 +35,16 @@ export const Home = () => {
       <NavTabs links={NAV_LINKS}/>
 
       <Container fluid className="home-content">
-        { (location.pathname === '/home/meetings' || location.pathname === '/') && (
-          <Meetings />
-        )}
-        { location.pathname === '/home/sessions' && (
-          <Sessions />
-        )}
-        { location.pathname === '/home/drivers' && (
-          <Drivers />
+        { NAV_LINKS.map((link, index) => (
+            ( index === 0 && location.pathname === '/') &&
+              (<div key={index}>
+                {link.component}
+              </div>) ||
+            ( location.pathname === link.href) &&
+              (<div key={index}>
+                {link.component}
+              </div>)
+            )
         )}
       </Container>
     </Container>
