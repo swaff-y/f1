@@ -14,7 +14,7 @@ export const useMeetings = ({ year }: UseMeetingsProps): UseQueryResponse => {
     queryFn: () => fetchMeetings({ year }),
   });
   const { data, isError, isLoading, isSuccess } = result;
-  const meetings = Meeting.buildMeetingCollection({ year, data });
+  const meetings = Meeting.buildMeetingCollection({ data });
 
   return {
     data: meetings,

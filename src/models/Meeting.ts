@@ -21,7 +21,6 @@ export interface MeetingProps {
 }
 
 type MeetingBuildProps = {
-  year: string;
   data: any;
 };
 
