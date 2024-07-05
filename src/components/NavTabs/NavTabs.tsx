@@ -1,8 +1,18 @@
+import { FC } from 'react';
 import './navTabs.css'
 import { Nav } from "react-bootstrap";
 import { useLocation } from "react-router-dom";
 
-export const NavTabs = () => {
+interface NavTabsProps {
+  links: LinkAttrs[];
+}
+
+type LinkAttrs = {
+  label: string;
+  href: string;
+};
+
+export const NavTabs: FC<NavTabsProps> = ({ links }) => {
   let location = useLocation();
   
   return (
@@ -12,21 +22,20 @@ export const NavTabs = () => {
       defaultActiveKey="/home"
       className="nav-tabs"
     >
-      <Nav.Item>
-        <Nav.Link href='/home/meetings' active={
-          location.pathname === '/home/meetings' || location.pathname === '/'
-        }>Races</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href='/home/sessions' active={
-          location.pathname === '/home/sessions'
-        }>Sessions</Nav.Link>
-      </Nav.Item>
-      <Nav.Item>
-        <Nav.Link href='/home/drivers' active={
-          location.pathname === '/home/drivers'
-        }>Drivers</Nav.Link>
-      </Nav.Item>
+      {links.map((link, index) => (
+        <Nav.Item key={index}>
+          <Nav.Link 
+            href={link.href}
+            active={
+              index === 0 ? 
+              ( location.pathname === link.href || location.pathname === '/' ) : 
+              ( location.pathname === link.href )
+            }
+          >
+            {link.label}
+          </Nav.Link>
+        </Nav.Item>
+      ))}
     </Nav>
   );
 };

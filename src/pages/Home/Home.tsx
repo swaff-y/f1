@@ -7,6 +7,21 @@ import { Sessions } from '../../components/Sessions/Sessions';
 import { Drivers } from '../../components/Drivers/Drivers';
 import { NavTabs } from '../../components/NavTabs/NavTabs';
 
+const NAV_LINKS = [
+  { 
+    label: 'Races',
+    href: '/home/meetings'
+  },
+  { 
+    label: 'Sessions',
+    href: '/home/sessions'
+  },
+  { 
+    label: 'Drivers',
+    href: '/home/drivers'
+  }
+];
+
 
 export const Home = () => {
   let location = useLocation();
@@ -14,7 +29,7 @@ export const Home = () => {
   return (
     <Container fluid className="home-container">
       <NavBar selected='home'/>
-      <NavTabs />
+      <NavTabs links={NAV_LINKS}/>
 
       <Container fluid className="home-content">
         { (location.pathname === '/home/meetings' || location.pathname === '/') && (
