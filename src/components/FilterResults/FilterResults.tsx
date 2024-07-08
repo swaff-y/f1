@@ -2,11 +2,11 @@ import { FC } from "react";
 import { Table } from "react-bootstrap";
 
 interface FilterResultsProps {
-  selection: { label: string, id: string };
   data: any;
+  filterOptions: any;
 };
 
-export const FilterResults: FC<FilterResultsProps> = ({ selection, data }) => {
+export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) => {
   return (
     <Table 
       striped
@@ -16,19 +16,32 @@ export const FilterResults: FC<FilterResultsProps> = ({ selection, data }) => {
     >
       <thead>
         <tr>
-          <th>{ selection.label }</th>
-          <th>Meeting Official Name</th>
-          <th>Country</th>
-          <th>Date</th>
+          { filterOptions.map((option: any, index: number) => (
+            <th 
+              key={index}
+              className='filter-results-header'
+            >{ option.label }</th>
+          ))}
         </tr>
       </thead>
       <tbody>
         { data.map((meeting: any, index: number) => (
           <tr key={index}>
-            <td>{ meeting[selection.id] }</td>
-            <td>{ meeting.meeting_official_name }</td>
-            <td>{ meeting.country_name }</td>
-            <td>{ meeting.date_start }</td>
+            { filterOptions.map((option: any, index: number) => (
+              option.id === 'date_start') ?
+                <td 
+                  key={index}
+                  className='filter-results-cell'
+                >
+                    { new Date(meeting[option.id]).toISOString().split('T')[0] }
+                </td> :
+                <td 
+                  key={index}
+                  className='filter-results-cell'
+                >
+                  { meeting[option.id] }
+                </td>
+            )}
           </tr>
         )) }
       </tbody>

@@ -38,14 +38,16 @@ const MEETING_FILTER_OPTIONS = [
 
 export const Meetings = () => {
   const { 
-    meetings, 
+    meetings,
+    filterOptions,
     setSelection,
     setValue,
     selection,
     value,
     isLoading, 
     isSuccess,
-    onSubmit
+    onSubmit,
+    isNeedingInput
   } = useMeetingFilter();
 
   return (
@@ -60,6 +62,11 @@ export const Meetings = () => {
           onSubmit={onSubmit}
         />
       </SectionContainer>
+      {isNeedingInput &&
+        <SectionContainer>
+          <p>Please enter a search term</p>
+        </SectionContainer>
+      }
       {isLoading &&
         <SectionContainer>
           <FilterResultsLoader />
@@ -67,7 +74,10 @@ export const Meetings = () => {
       }
       {isSuccess &&
         <SectionContainer>
-          <FilterResults selection={selection} data={meetings}/>
+          <FilterResults 
+            data={meetings}
+            filterOptions={filterOptions}
+          />
         </SectionContainer>
       }
     </div>
