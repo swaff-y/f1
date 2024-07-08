@@ -12,7 +12,6 @@ type MeetingFilterResponse = {
   onSubmit: () => void;
   isLoading: boolean;
   isSuccess: boolean;
-  isNeedingInput: boolean;
 };
 
 const YEAR_FILTER_OPTIONS = [
@@ -171,6 +170,5 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
     },
     isLoading,
     isSuccess: !isSubmit ? false : isSuccess,
-    isNeedingInput: !isSubmit,
   };
 };

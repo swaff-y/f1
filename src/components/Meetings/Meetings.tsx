@@ -46,8 +46,7 @@ export const Meetings = () => {
     value,
     isLoading, 
     isSuccess,
-    onSubmit,
-    isNeedingInput
+    onSubmit
   } = useMeetingFilter();
 
   return (
@@ -62,11 +61,6 @@ export const Meetings = () => {
           onSubmit={onSubmit}
         />
       </SectionContainer>
-      {isNeedingInput &&
-        <SectionContainer>
-          <p>Please enter a search term</p>
-        </SectionContainer>
-      }
       {isLoading &&
         <SectionContainer>
           <FilterResultsLoader />
