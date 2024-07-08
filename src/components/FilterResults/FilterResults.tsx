@@ -1,9 +1,11 @@
 import { FC } from "react";
 import { Table } from "react-bootstrap";
+import { FilterOption } from "../Meetings/useMeetingFilter";
+import { Meeting } from "../../models/Meeting";
 
 interface FilterResultsProps {
-  data: any;
-  filterOptions: any;
+  data: Meeting[];
+  filterOptions: FilterOption[];
 };
 
 export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) => {
@@ -16,7 +18,7 @@ export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) =
     >
       <thead>
         <tr>
-          { filterOptions.map((option: any, index: number) => (
+          { filterOptions.map((option: FilterOption, index: number) => (
             <th 
               key={index}
               className='filter-results-header'
@@ -25,9 +27,9 @@ export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) =
         </tr>
       </thead>
       <tbody>
-        { data.map((meeting: any, index: number) => (
+        { data.map((meeting: Meeting, index: number) => (
           <tr key={index}>
-            { filterOptions.map((option: any, index: number) => (
+            { filterOptions.map((option: FilterOption, index: number) => (
               option.id === 'date_start') ?
                 <td 
                   key={index}
@@ -39,7 +41,7 @@ export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) =
                   key={index}
                   className='filter-results-cell'
                 >
-                  { meeting[option.id] }
+                  { (meeting as any)[option.id] }
                 </td>
             )}
           </tr>

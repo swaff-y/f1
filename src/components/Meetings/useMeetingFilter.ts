@@ -2,9 +2,14 @@ import { useState } from 'react';
 import { useMeetings } from '../../hooks/useMeetings';
 import { Meeting } from '../../models/Meeting';
 
+export type FilterOption = {
+  label: string;
+  id: string;
+};
+
 type MeetingFilterResponse = {
   meetings: Meeting[];
-  filterOptions: { label: string; id: string }[];
+  filterOptions: FilterOption[];
   setSelection: (selection: { label: string; id: string }) => void;
   setValue: (value: string) => void;
   selection: { label: string; id: string };
