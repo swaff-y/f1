@@ -61,12 +61,14 @@ export const Meetings = () => {
           onSubmit={onSubmit}
         />
       </SectionContainer>
-      {true &&
+      {isLoading &&
         <SectionContainer>
-          <FilterResultsLoader />
+          <FilterResultsLoader 
+            filterOptions={filterOptions}
+          />
         </SectionContainer>
       }
-      {false && isSuccess &&
+      {isSuccess &&
         <SectionContainer>
           <FilterResults 
             data={meetings}

@@ -1,11 +1,17 @@
+import { FC } from "react";
 import { Placeholder, Table } from "react-bootstrap"
 
-const NUM_COLUMNS = 7;
+interface FilterResultsLoaderProps {
+  filterOptions: {
+    label: string;
+    id: string;
+  }[];
+};
 
-const TableRow = () => {
+const TableRow: FC<FilterResultsLoaderProps> = ({ filterOptions }) => {
   return (
     <tr className='filter-results-cell'>
-      { Array.from({ length: NUM_COLUMNS }).map((_, index) => (
+      { filterOptions.map((_, index) => (
         <td key={index} >
           <Placeholder 
             sm={12}
@@ -20,7 +26,7 @@ const TableRow = () => {
 };
 
 
-export const FilterResultsLoader = () => {
+export const FilterResultsLoader: FC<FilterResultsLoaderProps> = ({ filterOptions }) => {
   return (
     <Table
       striped
@@ -30,18 +36,17 @@ export const FilterResultsLoader = () => {
     >
       <thead>
         <tr>
-          <th>Year</th>
-          <th>GP Name</th>
-          <th>GP Key</th>
-          <th>Country</th>
-          <th>Country Key</th>
-          <th>Circuit Name</th>
-          <th>Circuit Key</th>
+          { filterOptions.map((option, index) => (
+            <th 
+              key={index}
+              className='filter-results-header'
+            >{ option.label }</th>
+          ))}
         </tr>
       </thead>
       <tbody>
-        <TableRow />
-        <TableRow />
+        <TableRow filterOptions={filterOptions} />
+        <TableRow filterOptions={filterOptions} />
       </tbody>
     </Table>
   );
