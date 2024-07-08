@@ -17,6 +17,8 @@ type MeetingFilterResponse = {
   onSubmit: () => void;
   isLoading: boolean;
   isSuccess: boolean;
+  showMeeting: any;
+  handleClick: ({ data }: { data: any }) => void;
 };
 
 const YEAR_FILTER_OPTIONS = [
@@ -101,6 +103,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const [filterOptions, setFilterOptions] = useState(YEAR_FILTER_OPTIONS);
   const [value, setValue] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
+  const [showMeeting, setShowMeeting] = useState(null);
 
   const params = {
     meeting_name:
@@ -151,6 +154,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const onSetValue = (value: string): void => {
     setIsSubmit(false);
     setValue(value);
+    setShowMeeting(null);
   };
 
   const onSetSelection = (selection: { label: string; id: string }): void => {
@@ -162,6 +166,11 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   if (!isSubmit) {
     isSuccess = false;
   }
+
+  const handleClick = ({ data }: { data: any }): void => {
+    isSuccess = false;
+    setShowMeeting(data);
+  };
 
   return {
     meetings,
@@ -175,5 +184,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
     },
     isLoading,
     isSuccess: !isSubmit ? false : isSuccess,
+    showMeeting,
+    handleClick,
   };
 };

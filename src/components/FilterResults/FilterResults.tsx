@@ -6,9 +6,14 @@ import { Meeting } from "../../models/Meeting";
 interface FilterResultsProps {
   data: Meeting[];
   filterOptions: FilterOption[];
+  handleClick: ({ data }: { data: any }) => void;
 };
 
-export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) => {
+export const FilterResults: FC<FilterResultsProps> = ({ 
+  data, 
+  filterOptions,
+  handleClick
+ }) => {
   return (
     <Table 
       striped
@@ -27,21 +32,24 @@ export const FilterResults: FC<FilterResultsProps> = ({ data, filterOptions }) =
         </tr>
       </thead>
       <tbody>
-        { data.map((meeting: Meeting, index: number) => (
-          <tr key={index}>
+        { data.map((e: any, index: number) => (
+          <tr 
+            key={index}
+            onClick={() => handleClick({ data: e })}
+          >
             { filterOptions.map((option: FilterOption, index: number) => (
               option.id === 'date_start') ?
                 <td 
                   key={index}
                   className='filter-results-cell'
                 >
-                    { new Date(meeting[option.id]).toISOString().split('T')[0] }
+                    { new Date(e[option.id]).toISOString().split('T')[0] }
                 </td> :
                 <td 
                   key={index}
                   className='filter-results-cell'
                 >
-                  { (meeting as any)[option.id] }
+                  { e[option.id] }
                 </td>
             )}
           </tr>

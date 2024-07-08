@@ -46,7 +46,9 @@ export const Meetings = () => {
     value,
     isLoading, 
     isSuccess,
-    onSubmit
+    onSubmit,
+    showMeeting,
+    handleClick
   } = useMeetingFilter();
 
   return (
@@ -68,14 +70,20 @@ export const Meetings = () => {
           />
         </SectionContainer>
       }
-      {isSuccess &&
+      {isSuccess && !showMeeting && !isLoading &&
         <SectionContainer>
           <FilterResults 
             data={meetings}
             filterOptions={filterOptions}
+            handleClick={handleClick}
           />
         </SectionContainer>
       }
+      { showMeeting &&
+        <SectionContainer>
+          { showMeeting.meeting_name }
+        </SectionContainer>
+        }
     </div>
   );
 };
