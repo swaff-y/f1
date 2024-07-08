@@ -7,14 +7,22 @@ const CLIENT = axios.create({
   baseURL: API_URL,
 });
 
+export type MeetingParams = {
+  country_name?: string;
+  country_key?: number;
+  year?: string;
+  meeting_key?: number;
+  meeting_name?: string;
+  circuit_key?: number;
+  circuit_short_name?: string;
+};
+
 export class OpenF1API {
   client: AxiosInstance = CLIENT;
 
-  fetchMeetings = async ({ year }: { year: string }) => {
+  fetchMeetings = async (params: MeetingParams) => {
     const response = await this.client.get('meetings', {
-      params: {
-        year,
-      },
+      params,
     });
     if (!response.data) throw new Error('No meetings found');
 

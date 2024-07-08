@@ -12,6 +12,7 @@ export const FilterResults: FC<FilterResultsProps> = ({ selection, data }) => {
       striped
       bordered
       variant="dark"
+      responsive
     >
       <thead>
         <tr>

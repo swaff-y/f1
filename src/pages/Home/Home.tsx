@@ -1,5 +1,5 @@
 import './home.css'
-import { Container, Nav } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import { NavBar } from "../../components/NavBar/NavBar";
 import { useLocation } from 'react-router-dom';
 import { Meetings } from '../../components/Meetings/Meetings';

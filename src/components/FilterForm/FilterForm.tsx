@@ -9,17 +9,29 @@ type FilterAttributes = {
 interface FilterOptions {
   filterOptions: FilterAttributes[];
   setSelection: (selection: FilterAttributes) => void;
+  setValue: (value: string) => void;
   selection: FilterAttributes;
+  value: string | number;
+  onSubmit: () => void;
 };
 
 export const FilterForm:FC<FilterOptions> = ({ 
   filterOptions,
   setSelection,
-  selection
+  setValue,
+  selection,
+  value,
+  onSubmit
 }) => {
   
   return (
-    <Form className="filter-form">
+    <Form 
+      className="filter-form"
+      onSubmit={(e) => {
+        e.preventDefault();
+        onSubmit();
+      }}
+    >
     <InputGroup className="mb-3">
       <DropdownButton
         variant="outline-secondary"
@@ -30,11 +42,16 @@ export const FilterForm:FC<FilterOptions> = ({
           <Dropdown.Item key={index} onClick={() => setSelection(option)}>{option.label}</Dropdown.Item>
         ))}
       </DropdownButton>
-      <Form.Control aria-label="Text input with dropdown button" />
+      <Form.Control 
+        aria-label="Text input with dropdown button"
+        value={value}
+        onChange={(e) => setValue(e.target.value)}
+      />
     </InputGroup>
     <Button 
       className="mb-3 filter-button"
       variant="dark"
+      type='submit'
     >
       Search
     </Button>

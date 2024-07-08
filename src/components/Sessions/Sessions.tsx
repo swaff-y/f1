@@ -34,7 +34,10 @@ export const Sessions = () => {
       <FilterForm 
         filterOptions={MEETING_FILTER_OPTIONS}
         setSelection={setSelection}
+        setValue={() => {}}
         selection={selection}
+        value=''
+        onSubmit={() => {}}
       />
     </SectionContainer>
   );
