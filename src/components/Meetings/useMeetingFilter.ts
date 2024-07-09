@@ -106,10 +106,10 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const navigate = useNavigate();
   const queryParams = Utils.createParamsFromString(location.search);
   let selection = { label: 'Year', id: 'year' };
+  let value = '';
 
-  const [filterOptions, setFilterOptions] = useState(YEAR_FILTER_OPTIONS);
-  const [value, setValue] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
+  const [filterOptions, setFilterOptions] = useState(YEAR_FILTER_OPTIONS);
   const [showMeeting, setShowMeeting] = useState<null | Meeting>(null);
 
   if (queryParams.filter) {
@@ -125,6 +125,10 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
     } else {
       selection = { label: 'Year', id: 'year' };
     }
+  }
+
+  if (queryParams.value) {
+    value = queryParams?.value;
   }
 
   const params = {
@@ -175,7 +179,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
 
   const onSetValue = (value: string): void => {
     setIsSubmit(false);
-    setValue(value);
+    navigate(`/home/meetings?filter=${selection.id}&value=${value}`);
     setShowMeeting(null);
   };
 
