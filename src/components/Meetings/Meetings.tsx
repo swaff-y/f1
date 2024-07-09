@@ -6,7 +6,7 @@ import { FilterResultsLoader } from '../FilterResultsLoader/FilterResultsLoader'
 import { useMeetingFilter } from './useMeetingFilter';
 import { MeetingClickResults } from '../ClickResults/MeetingClickResults';
 
-const MEETING_FILTER_OPTIONS = [
+export const MEETING_FILTER_OPTIONS = [
   {
     id: 'year',
     label: 'Year',

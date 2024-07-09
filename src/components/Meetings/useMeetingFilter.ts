@@ -1,6 +1,9 @@
 import { useState } from 'react';
 import { useMeetings } from '../../hooks/useMeetings';
 import { Meeting } from '../../models/Meeting';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Utils } from '../../utils/Utils';
+import { MEETING_FILTER_OPTIONS } from './Meetings';
 
 export type FilterOption = {
   label: string;
@@ -99,11 +102,30 @@ const CIRCUIT_KEY_FILTER_OPTIONS = [
 ];
 
 export const useMeetingFilter = (): MeetingFilterResponse => {
-  const [selection, setSelection] = useState({ label: 'Year', id: 'year' });
+  let location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = Utils.createParamsFromString(location.search);
+  let selection = { label: 'Year', id: 'year' };
+
   const [filterOptions, setFilterOptions] = useState(YEAR_FILTER_OPTIONS);
   const [value, setValue] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
   const [showMeeting, setShowMeeting] = useState<null | Meeting>(null);
+
+  if (queryParams.filter) {
+    const label = MEETING_FILTER_OPTIONS.find(
+      (elm) => elm.id === queryParams.filter
+    )?.label;
+
+    if (label) {
+      selection = {
+        label,
+        id: queryParams.filter,
+      };
+    } else {
+      selection = { label: 'Year', id: 'year' };
+    }
+  }
 
   const params = {
     meeting_name:
@@ -160,7 +182,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const onSetSelection = (selection: { label: string; id: string }): void => {
     setIsSubmit(false);
     handleFilterSelection(selection);
-    setSelection(selection);
+    navigate(`/home/meetings?filter=${selection.id}`);
   };
 
   if (!isSubmit) {
