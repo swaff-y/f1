@@ -1,3 +1,4 @@
+import { Driver, DriverProps } from './Driver';
 import { Session, SessionProps } from './Session';
 import { Attributes } from './baseModels/Attributes';
 import { Collection } from './baseModels/Collection';
@@ -18,6 +19,7 @@ export interface MeetingProps {
   meeting_official_name?: string;
   year?: number;
   sessions?: Collection<Session, SessionProps>;
+  drivers?: Collection<Driver, DriverProps>;
 }
 
 type MeetingBuildProps = {
@@ -52,6 +54,18 @@ export class Meeting extends Model<MeetingProps> {
 
     return new Collection<Session, SessionProps>([], (json: SessionProps) =>
       Session.buildSession(json)
+    );
+  }
+
+  setDrivers(drivers: Collection<Driver, DriverProps>): void {
+    this.set({ drivers });
+  }
+
+  get drivers(): Collection<Driver, DriverProps> {
+    if (this.get('sessions')) return this.get('drivers')!;
+
+    return new Collection<Driver, DriverProps>([], (json: DriverProps) =>
+      Driver.buildDriver(json)
     );
   }
 

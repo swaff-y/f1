@@ -45,7 +45,7 @@ export class OpenF1API {
     session_key,
   }: {
     meeting_key: number;
-    session_key: number;
+    session_key?: number;
   }) => {
     const response = await this.client.get('drivers', {
       params: {
