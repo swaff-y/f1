@@ -18,12 +18,18 @@ export const useDrivers = ({
     queryKey: ['drivers', { meeting_key, session_key }],
     queryFn: () => fetchDrivers(params),
   });
-  const { data, isError, isLoading, isSuccess } = result;
+  const { data, isLoading } = result;
+  let { isError, isSuccess } = result;
   const drivers = Driver.buildDriverCollection({
     meeting_key,
     session_key,
     data,
   });
+
+  if (data?.length === 0) {
+    isError = true;
+    isSuccess = false;
+  }
 
   return {
     data: drivers,
