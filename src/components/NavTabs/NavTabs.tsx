@@ -9,7 +9,7 @@ interface NavTabsProps {
 
 type LinkAttrs = {
   label: string;
-  href: string;
+  href?: string;
 };
 
 export const NavTabs: FC<NavTabsProps> = ({ links }) => {

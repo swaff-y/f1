@@ -17,7 +17,7 @@ type MeetingFilterResponse = {
   onSubmit: () => void;
   isLoading: boolean;
   isSuccess: boolean;
-  showMeeting: any;
+  showMeeting: Meeting | null;
   handleClick: ({ data }: { data: any }) => void;
 };
 
@@ -103,7 +103,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const [filterOptions, setFilterOptions] = useState(YEAR_FILTER_OPTIONS);
   const [value, setValue] = useState('');
   const [isSubmit, setIsSubmit] = useState(false);
-  const [showMeeting, setShowMeeting] = useState(null);
+  const [showMeeting, setShowMeeting] = useState<null | Meeting>(null);
 
   const params = {
     meeting_name:

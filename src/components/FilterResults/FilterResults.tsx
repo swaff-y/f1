@@ -2,6 +2,7 @@ import { FC } from "react";
 import { Table } from "react-bootstrap";
 import { FilterOption } from "../Meetings/useMeetingFilter";
 import { Meeting } from "../../models/Meeting";
+import { Utils } from "../../utils/Utils";
 
 interface FilterResultsProps {
   data: Meeting[];
@@ -43,7 +44,7 @@ export const FilterResults: FC<FilterResultsProps> = ({
                   key={index}
                   className='filter-results-cell'
                 >
-                    { new Date(e[option.id]).toISOString().split('T')[0] }
+                    { Utils.toISODate(e[option.id]) }
                 </td> :
                 <td 
                   key={index}

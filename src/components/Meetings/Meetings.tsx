@@ -4,6 +4,7 @@ import { SectionContainer } from '../SectionContainer/SectionContainer';
 import { FilterResults } from '../FilterResults/FilterResults';
 import { FilterResultsLoader } from '../FilterResultsLoader/FilterResultsLoader';
 import { useMeetingFilter } from './useMeetingFilter';
+import { MeetingClickResults } from '../ClickResults/MeetingClickResults';
 
 const MEETING_FILTER_OPTIONS = [
   {
@@ -81,9 +82,9 @@ export const Meetings = () => {
       }
       { showMeeting &&
         <SectionContainer>
-          { showMeeting.meeting_name }
+          <MeetingClickResults data={showMeeting} />
         </SectionContainer>
-        }
+      }
     </div>
   );
 };
