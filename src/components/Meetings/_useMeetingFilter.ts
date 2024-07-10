@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useMeetings } from '../../hooks/useMeetings';
 import { Meeting } from '../../models/Meeting';
 import { useLocation, useNavigate } from 'react-router-dom';
@@ -129,25 +129,49 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
 
   if (queryParams.value) {
     value = queryParams?.value;
+    console.log('value', queryParams.value);
+    console.log('selection', selection.id);
   }
 
   const params = {
     meeting_name:
-      isSubmit && selection.id === 'meeting_name' ? value : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'meeting_name'
+        ? value
+        : undefined,
     meeting_key:
-      isSubmit && selection.id === 'meeting_key' ? parseInt(value) : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'meeting_key'
+        ? parseInt(value)
+        : undefined,
     country_name:
-      isSubmit && selection.id === 'country_name' ? value : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'country_name'
+        ? value
+        : undefined,
     country_key:
-      isSubmit && selection.id === 'country_key' ? parseInt(value) : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'country_key'
+        ? parseInt(value)
+        : undefined,
     circuit_name:
-      isSubmit && selection.id === 'circuit_name' ? value : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'circuit_name'
+        ? value
+        : undefined,
     circuit_key:
-      isSubmit && selection.id === 'circuit_key' ? parseInt(value) : undefined,
-    year: isSubmit && selection.id === 'year' ? value : undefined,
+      (queryParams.value || isSubmit) && selection.id === 'circuit_key'
+        ? parseInt(value)
+        : undefined,
+    year:
+      (queryParams.value || isSubmit) && selection.id === 'year'
+        ? value
+        : undefined,
   };
 
   let { data: meetings, isSuccess, isLoading } = useMeetings(params);
+
+  let meeting = null;
+  if (queryParams?.meeting_key) {
+    meeting =
+      meetings.getByKey('meeting_key', parseInt(queryParams.meeting_key)) ||
+      null;
+  }
 
   const handleFilterSelection = (selection: { label: string; id: string }) => {
     switch (selection.id) {
@@ -196,10 +220,11 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
   const handleClick = ({ data }: { data: any }): void => {
     isSuccess = false;
     setShowMeeting(data);
+    navigate(`/home/meetings?meeting_key=${data?.meeting_key}`);
   };
 
   return {
-    meetings,
+    meetings: meetings.getAll(),
     filterOptions,
     setSelection: onSetSelection,
     setValue: onSetValue,
@@ -210,7 +235,7 @@ export const useMeetingFilter = (): MeetingFilterResponse => {
     },
     isLoading,
     isSuccess: !isSubmit ? false : isSuccess,
-    showMeeting,
+    showMeeting: meeting || showMeeting,
     handleClick,
   };
 };

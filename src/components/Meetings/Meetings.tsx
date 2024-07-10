@@ -1,10 +1,9 @@
 import './meetings.css';
-import { FilterForm } from '../FilterForm/FilterForm';
-import { SectionContainer } from '../SectionContainer/SectionContainer';
-import { FilterResults } from '../FilterResults/FilterResults';
-import { FilterResultsLoader } from '../FilterResultsLoader/FilterResultsLoader';
-import { useMeetingFilter } from './useMeetingFilter';
-import { MeetingClickResults } from '../ClickResults/MeetingClickResults';
+import { MeetingClickResults } from './MeetingClickResults/MeetingClickResults';
+import { MeetingFilterForm } from './MeetingFilterForm/MeetingFilterForm';
+import { MeetingFilterResultsLoader } from './MeetingFilterResultsLoader/MeetingFilterResultsLoader';
+import { MeetingFilterResults } from './MeetingFilterResults/MeetingFilterResults';
+import { useLocationParams } from '../../hooks/useLocationParams';
 
 export const MEETING_FILTER_OPTIONS = [
   {
@@ -38,53 +37,23 @@ export const MEETING_FILTER_OPTIONS = [
 ];
 
 export const Meetings = () => {
-  const { 
-    meetings,
-    filterOptions,
-    setSelection,
-    setValue,
-    selection,
-    value,
-    isLoading, 
-    isSuccess,
-    onSubmit,
-    showMeeting,
-    handleClick
-  } = useMeetingFilter();
+  const {
+    meeting_key
+  } = useLocationParams();
 
   return (
     <div className='meeting-container'>
-      <SectionContainer>
-        <FilterForm
-          filterOptions={MEETING_FILTER_OPTIONS}
-          setSelection={setSelection}
-          setValue={setValue}
-          selection={selection}
-          value={value}
-          onSubmit={onSubmit}
-        />
-      </SectionContainer>
-      {isLoading &&
-        <SectionContainer>
-          <FilterResultsLoader 
-            filterOptions={filterOptions}
-          />
-        </SectionContainer>
+      <MeetingFilterForm />
+      { !meeting_key &&
+        <>
+          <MeetingFilterResultsLoader />
+          <MeetingFilterResults />
+        </>
       }
-      {isSuccess && !showMeeting && !isLoading &&
-        <SectionContainer>
-          <FilterResults 
-            data={meetings}
-            filterOptions={filterOptions}
-            handleClick={handleClick}
-          />
-        </SectionContainer>
-      }
-      { showMeeting &&
-        <SectionContainer>
-          <MeetingClickResults data={showMeeting} />
-        </SectionContainer>
-      }
+      { meeting_key && 
+        <MeetingClickResults 
+          meeting_key={ parseInt(meeting_key) }
+        />}
     </div>
   );
 };

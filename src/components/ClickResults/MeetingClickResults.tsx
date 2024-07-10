@@ -26,8 +26,6 @@ export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ data }) => {
 
   if (isSessionsSuccess) data.setSessions(meetingSessions);
   if (isDriversSuccess) data.setDrivers(meetingDrivers);
-
-  console.log('MeetingClickResults data:', data);
   
   return (
     <Card 

@@ -36,13 +36,15 @@ export class Meeting extends Model<MeetingProps> {
     return new Meeting(new Attributes<MeetingProps>(attrs), new Eventing());
   }
 
-  static buildMeetingCollection({ data }: MeetingBuildProps): Meeting[] {
+  static buildMeetingCollection({
+    data,
+  }: MeetingBuildProps): Collection<Meeting, MeetingProps> {
     const meetingCollection = new Collection<Meeting, MeetingProps>(
       data,
       (json: MeetingProps) => Meeting.buildMeeting(json)
     );
 
-    return meetingCollection.getAll();
+    return meetingCollection;
   }
 
   setSessions(sessions: Collection<Session, SessionProps>): void {

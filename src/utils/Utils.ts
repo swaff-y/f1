@@ -22,20 +22,16 @@ export class Utils {
       return acc;
     }, {} as Record<string, string>);
 
-    // // Initialize params object based on the provided structure
-    // const params: any = {};
-
-    // // Check the filter type and set the params accordingly
-    // if (queryObject.filter === 'meeting_name') {
-    //   params.meeting_name = queryObject.value;
-    // } else if (queryObject.filter === 'meeting_key') {
-    //   params.meeting_key = parseInt(queryObject.value);
-    // } else if (queryObject.filter === 'year') {
-    //   // Assuming 'year' needs to be handled differently or just an example
-    //   // Adjust based on actual requirements
-    //   params.year = queryObject.value;
-    // }
-
     return queryObject as T;
+  }
+
+  static getSelectionFromFilterOptions(
+    filterKey: string,
+    filterOptions: any[]
+  ) {
+    return (
+      filterOptions.find((option) => option.id === filterKey) ||
+      filterOptions[0]
+    );
   }
 }
