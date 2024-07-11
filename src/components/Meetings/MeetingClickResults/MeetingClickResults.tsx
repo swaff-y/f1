@@ -5,20 +5,21 @@ import { useDrivers } from "../../../hooks/useDrivers";
 import { useSessions } from "../../../hooks/useSessions";
 import { useMeeting } from "../../../hooks/useMeeting";
 import { SectionContainer } from "../../SectionContainer/SectionContainer";
+import { ClickResultsLoader } from "../../Loaders/ClickResultsLoader/ClickResultsLoader";
 
 interface MeetingClickResultsProps {
   meeting_key: number;
 };
 
 export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key }) => {
-  const { data, isSuccess } = useMeeting({ meeting_key });
-  const { 
+  const { data, isSuccess, isLoading } = useMeeting({ meeting_key });
+  const {
     data: meetingSessions, 
     isSuccess: isSessionsSuccess,
     isLoading: isSessionsLoading,
     isError: isSessionsError,
   } = useSessions({ meeting_key });
-  const { 
+  const {
     data: meetingDrivers, 
     isSuccess: isDriversSuccess,
     isLoading: isDriversLoading,
@@ -30,16 +31,21 @@ export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key 
   
   return (
     <>
-    { isSuccess && 
+    { isLoading &&
+      <SectionContainer>
+        <ClickResultsLoader />
+      </SectionContainer>
+    }
+    { isSuccess &&
       <SectionContainer>
         <Card
-          bg="dark" 
+          bg="dark"
           text="light"
         >
           <Card.Header>
             <Card.Title>
               {Utils.toTitleCase(data.meeting_official_name)}
-            </Card.Title> 
+            </Card.Title>
           </Card.Header>
           <Card.Body>
             <Table striped bordered hover variant="dark">

@@ -1,6 +1,6 @@
 import { FC } from "react"
 import { SectionContainer } from "../../SectionContainer/SectionContainer";
-import { FilterResultsLoader } from "../../FilterResultsLoader/FilterResultsLoader";
+import { FilterResultsLoader } from "../../Loaders/FilterResultsLoader/FilterResultsLoader";
 import { useMeetingFilter } from "../useMeetingFilter";
 
 export const MeetingFilterResultsLoader: FC = () => {
