@@ -5,37 +5,6 @@ import { MeetingFilterResultsLoader } from './MeetingFilterResultsLoader/Meeting
 import { MeetingFilterResults } from './MeetingFilterResults/MeetingFilterResults';
 import { useLocationParams } from '../../hooks/useLocationParams';
 
-export const MEETING_FILTER_OPTIONS = [
-  {
-    id: 'year',
-    label: 'Year',
-  },
-  {
-    id: 'meeting_name',
-    label: 'GP Name',
-  },
-  {
-    id: 'meeting_key',
-    label: 'GP Key',
-  },
-  {
-    id: 'country_name',
-    label: 'Country',
-  },
-  {
-    id: 'country_key',
-    label: 'Country Key'
-  },
-  {
-    id: 'circuit_short_name',
-    label: 'Circuit Name'
-  },
-  {
-    id: 'circuit_key',
-    label: 'Circuit Key'
-  }
-];
-
 export const Meetings = () => {
   const {
     meeting_key
