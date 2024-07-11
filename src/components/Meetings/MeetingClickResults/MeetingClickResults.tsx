@@ -1,6 +1,4 @@
 import { FC } from "react";
-import { useLocationParams } from "../../../hooks/useLocationParams";
-import { Meeting } from "../../../models/Meeting";
 import { Button, Card, Placeholder, Table } from "react-bootstrap";
 import { Utils } from "../../../utils/Utils";
 import { useDrivers } from "../../../hooks/useDrivers";
@@ -13,7 +11,7 @@ interface MeetingClickResultsProps {
 };
 
 export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key }) => {
-  const { data, isSuccess } = useMeeting({meeting_key });
+  const { data, isSuccess } = useMeeting({ meeting_key });
   const { 
     data: meetingSessions, 
     isSuccess: isSessionsSuccess,
@@ -27,8 +25,8 @@ export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key 
     isError: isDriversError,
   } = useDrivers({ meeting_key });
 
-  if (isSessionsSuccess) data.setSessions(meetingSessions);
-  if (isDriversSuccess) data.setDrivers(meetingDrivers);
+  if (isSessionsSuccess && meetingSessions) data.setSessions(meetingSessions);
+  if (isDriversSuccess && meetingDrivers) data.setDrivers(meetingDrivers);
   
   return (
     <>

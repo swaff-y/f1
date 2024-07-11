@@ -27,7 +27,7 @@ export const MEETING_FILTER_OPTIONS = [
     label: 'Country Key'
   },
   {
-    id: 'circuit_name',
+    id: 'circuit_short_name',
     label: 'Circuit Name'
   },
   {

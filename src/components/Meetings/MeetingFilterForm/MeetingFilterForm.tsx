@@ -27,7 +27,7 @@ export const MEETING_FILTER_OPTIONS = [
     label: 'Country Key'
   },
   {
-    id: 'circuit_name',
+    id: 'circuit_short_name',
     label: 'Circuit Name'
   },
   {
@@ -48,7 +48,7 @@ export const MeetingFilterForm: FC = () => {
   );
 
   const onSubmit = () => {
-    navigate(`?filter=${selection.id}&value=${valueState}`);
+    navigate(`/home/meetings?filter=${selection.id}&value=${valueState}`);
   };
 
   return (

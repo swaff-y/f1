@@ -9,10 +9,6 @@ export const MeetingFilterResults: FC = () => {
   const { meetings, isSuccess, filterOptions } = useMeetingFilter();
   const navigate = useNavigate();
 
-  // if(isSuccess && meetings.length > 0) {
-  //   setMeetings(meetings);
-  // };
-
   const handleClick = ({ data }: { data: Meeting }) => {
     const meeting_key = data.meeting_key;
     if(meeting_key) {

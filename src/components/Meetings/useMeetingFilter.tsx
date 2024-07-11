@@ -107,7 +107,7 @@ export const MEETING_FILTER_OPTIONS = [
     label: 'Country Key'
   },
   {
-    id: 'circuit_name',
+    id: 'circuit_short_name',
     label: 'Circuit Name'
   },
   {
@@ -121,9 +121,7 @@ export const useMeetingFilter = () => {
     filter,
     value
   } = useLocationParams();
-  const [selection, _setSelection] = useState(
-    Utils.getSelectionFromFilterOptions(filter, MEETING_FILTER_OPTIONS)
-  );
+  const selection = Utils.getSelectionFromFilterOptions(filter, MEETING_FILTER_OPTIONS)
   let filterOptions = YEAR_FILTER_OPTIONS;
 
   switch (selection.id) {
@@ -169,8 +167,8 @@ export const useMeetingFilter = () => {
       value && selection.id === 'country_key'
         ? parseInt(value)
         : undefined,
-    circuit_name:
-      value && selection.id === 'circuit_name'
+    circuit_short_name:
+      value && selection.id === 'circuit_short_name'
         ? value
         : undefined,
     circuit_key:
