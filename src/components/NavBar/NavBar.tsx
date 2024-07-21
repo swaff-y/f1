@@ -1,5 +1,5 @@
 import './navBar.css'
-import { Container, Nav, Navbar } from "react-bootstrap"
+import { Nav, Navbar } from "react-bootstrap"
 
 export const NavBar = ({ selected = 'home' }: { selected: string}) => {
   return (

@@ -19,7 +19,7 @@ export interface DriverProps {
 
 type DriverBuildProps = {
   meeting_key: number;
-  session_key: number;
+  session_key?: number;
   data: any;
 };
 
