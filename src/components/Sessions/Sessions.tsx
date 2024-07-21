@@ -10,6 +10,7 @@ export const Sessions = () => {
   return (
     <div className='session-container'>
       <SessionFilterForm />
+
     </div>
   );
 };

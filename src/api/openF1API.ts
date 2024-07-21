@@ -1,7 +1,7 @@
 import axios, { AxiosInstance } from 'axios';
 
-// const API_URL = 'https://api.openf1.org/v1/';
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://api.openf1.org/v1/';
+// const API_URL = 'http://localhost:3000';
 
 const CLIENT = axios.create({
   baseURL: API_URL,
