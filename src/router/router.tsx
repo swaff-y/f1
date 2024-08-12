@@ -5,6 +5,9 @@ import {
   Routes,
 } from "react-router-dom";
 import { Home } from '../pages/Home/Home';
+import { Meetings } from "../components/Meetings/Meetings";
+import { Sessions } from "../components/Sessions/Sessions";
+import { Drivers } from "../components/Drivers/Drivers";
 
 export const AppRouter: FC = () => {
   return (
@@ -12,24 +15,36 @@ export const AppRouter: FC = () => {
       <Routes>
         <Route 
           path="/"
-          element={<Home />}
-        >
-        </Route>
+          element={
+            <Home>
+              <Meetings />
+            </Home>
+          }
+        />
         <Route 
           path="/home/meetings"
-          element={<Home />}
-        >
-        </Route>
+          element={
+            <Home>
+              <Meetings />
+            </Home>
+          }
+        />
         <Route 
           path="/home/sessions"
-          element={<Home />}
-        >
-        </Route>
+          element={
+            <Home>
+              <Sessions />
+            </Home>
+          }
+        />
         <Route 
           path="/home/drivers"
-          element={<Home />}
-        >
-        </Route>
+          element={
+            <Home>
+              <Drivers />
+            </Home>
+          }
+        />
       </Routes>
     </Router>
   );
