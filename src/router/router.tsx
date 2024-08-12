@@ -4,10 +4,10 @@ import {
   Route,
   Routes,
 } from "react-router-dom";
-import { Home } from '../pages/Home/Home';
-import { Meetings } from "../components/Meetings/Meetings";
-import { Sessions } from "../components/Sessions/Sessions";
-import { Drivers } from "../components/Drivers/Drivers";
+import { Home } from '../layouts/Home/Home';
+import { Meetings } from "../pages/Meetings/Meetings";
+import { Sessions } from "../pages/Sessions/Sessions";
+import { Drivers } from "../pages/Drivers/Drivers";
 
 export const AppRouter: FC = () => {
   return (

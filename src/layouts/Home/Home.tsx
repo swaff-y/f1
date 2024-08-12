@@ -1,10 +1,6 @@
 import './home.css'
 import { Container } from "react-bootstrap";
 import { NavBar } from "../../components/NavBar/NavBar";
-import { useLocation } from 'react-router-dom';
-import { Meetings } from '../../components/Meetings/Meetings';
-import { Sessions } from '../../components/Sessions/Sessions';
-import { Drivers } from '../../components/Drivers/Drivers';
 import { NavTabs } from '../../components/NavTabs/NavTabs';
 import { FC } from 'react';
 

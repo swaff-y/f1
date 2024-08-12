@@ -1,7 +1,7 @@
 import { FC } from "react";
-import { SectionContainer } from "../../SectionContainer/SectionContainer";
-import { FilterResults } from "../../FilterResults/FilterResults";
-import { useMeetingFilter } from "../useMeetingFilter";
+import { SectionContainer } from "../../../components/SectionContainer/SectionContainer";
+import { FilterResults } from "../../../components/FilterResults/FilterResults";
+import { useMeetingFilter } from "../../../hooks/useMeetingFilter";
 import { useNavigate } from "react-router-dom";
 import { Meeting } from "../../../models/Meeting";
 

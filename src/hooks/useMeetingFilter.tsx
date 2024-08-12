@@ -1,7 +1,6 @@
-import { useState } from "react";
-import { useLocationParams } from "../../hooks/useLocationParams";
-import { useMeetings } from "../../hooks/useMeetings";
-import { Utils } from "../../utils/Utils";
+import { useLocationParams } from "./useLocationParams";
+import { useMeetings } from "./useMeetings";
+import { Utils } from "../utils/Utils";
 
 export type FilterOption = {
   label: string;

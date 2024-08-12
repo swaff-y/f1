@@ -1,7 +1,7 @@
 import { FC } from "react"
-import { SectionContainer } from "../../SectionContainer/SectionContainer";
-import { FilterResultsLoader } from "../../Loaders/FilterResultsLoader/FilterResultsLoader";
-import { useMeetingFilter } from "../useMeetingFilter";
+import { SectionContainer } from "../../../components/SectionContainer/SectionContainer";
+import { FilterResultsLoader } from "../../../components/Loaders/FilterResultsLoader/FilterResultsLoader";
+import { useMeetingFilter } from "../../../hooks/useMeetingFilter";
 
 export const MeetingFilterResultsLoader: FC = () => {
   const { isLoading, filterOptions  } = useMeetingFilter();

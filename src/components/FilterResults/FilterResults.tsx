@@ -1,6 +1,6 @@
 import { FC } from "react";
 import { Table } from "react-bootstrap";
-import { FilterOption } from "../Meetings/useMeetingFilter";
+import { FilterOption } from "../../hooks/useMeetingFilter";
 import { Meeting } from "../../models/Meeting";
 import { Utils } from "../../utils/Utils";
 

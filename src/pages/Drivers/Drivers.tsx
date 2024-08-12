@@ -1,6 +1,6 @@
 import './drivers.css';
-import { FilterForm } from '../FilterForm/FilterForm';
-import { SectionContainer } from '../SectionContainer/SectionContainer';
+import { FilterForm } from '../../components/FilterForm/FilterForm';
+import { SectionContainer } from '../../components/SectionContainer/SectionContainer';
 import { useState } from 'react';
 
 const MEETING_FILTER_OPTIONS = [

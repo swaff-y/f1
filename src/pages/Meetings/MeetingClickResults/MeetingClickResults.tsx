@@ -4,8 +4,8 @@ import { Utils } from "../../../utils/Utils";
 import { useDrivers } from "../../../hooks/useDrivers";
 import { useSessions } from "../../../hooks/useSessions";
 import { useMeeting } from "../../../hooks/useMeeting";
-import { SectionContainer } from "../../SectionContainer/SectionContainer";
-import { ClickResultsLoader } from "../../Loaders/ClickResultsLoader/ClickResultsLoader";
+import { SectionContainer } from "../../../components/SectionContainer/SectionContainer";
+import { ClickResultsLoader } from "../../../components/Loaders/ClickResultsLoader/ClickResultsLoader";
 
 interface MeetingClickResultsProps {
   meeting_key: number;
