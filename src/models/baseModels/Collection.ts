@@ -30,4 +30,8 @@ export class Collection<T, K> {
   getAll(): T[] {
     return this.models;
   }
+
+  getByKey(key: string, value: string): T | undefined {
+    return this.models.find((model: any) => model[key] === value);
+  }
 }

@@ -1,20 +1,28 @@
 import axios, { AxiosInstance } from 'axios';
 
-// const API_URL = 'https://api.openf1.org/v1/';
-const API_URL = 'http://localhost:3000';
+const API_URL = 'https://api.openf1.org/v1/';
+// const API_URL = 'http://localhost:3000';
 
 const CLIENT = axios.create({
   baseURL: API_URL,
 });
 
+export type MeetingParams = {
+  country_name?: string;
+  country_key?: number;
+  year?: string;
+  meeting_key?: number;
+  meeting_name?: string;
+  circuit_key?: number;
+  circuit_short_name?: string;
+};
+
 export class OpenF1API {
   client: AxiosInstance = CLIENT;
 
-  fetchMeetings = async ({ year }: { year: string }) => {
+  fetchMeetings = async (params: MeetingParams) => {
     const response = await this.client.get('meetings', {
-      params: {
-        year,
-      },
+      params,
     });
     if (!response.data) throw new Error('No meetings found');
 
@@ -37,7 +45,7 @@ export class OpenF1API {
     session_key,
   }: {
     meeting_key: number;
-    session_key: number;
+    session_key?: number;
   }) => {
     const response = await this.client.get('drivers', {
       params: {

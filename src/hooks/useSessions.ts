@@ -15,8 +15,14 @@ export const useSessions = ({
     queryKey: ['sessions', meeting_key],
     queryFn: () => fetchSessions({ meeting_key }),
   });
-  const { data, isError, isLoading, isSuccess } = sessionsResult;
+  const { data, isLoading } = sessionsResult;
+  let { isError, isSuccess } = sessionsResult;
   const sessions = Session.buildSessionCollection({ data });
+
+  if (data?.length === 0) {
+    isError = true;
+    isSuccess = false;
+  }
 
   return {
     data: sessions,
