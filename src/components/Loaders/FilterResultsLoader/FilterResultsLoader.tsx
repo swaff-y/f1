@@ -46,7 +46,6 @@ export const FilterResultsLoader: FC<FilterResultsLoaderProps> = ({ filterOption
       </thead>
       <tbody>
         <TableRow filterOptions={filterOptions} />
-        <TableRow filterOptions={filterOptions} />
       </tbody>
     </Table>
   );

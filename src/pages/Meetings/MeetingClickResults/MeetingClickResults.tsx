@@ -6,28 +6,15 @@ import { useSessions } from "../../../hooks/useSessions";
 import { useMeeting } from "../../../hooks/useMeeting";
 import { SectionContainer } from "../../../components/SectionContainer/SectionContainer";
 import { ClickResultsLoader } from "../../../components/Loaders/ClickResultsLoader/ClickResultsLoader";
+import { useNavigate } from "react-router-dom";
 
 interface MeetingClickResultsProps {
   meeting_key: number;
 };
 
 export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key }) => {
+  const navigate = useNavigate();
   const { data, isSuccess, isLoading } = useMeeting({ meeting_key });
-  const {
-    data: meetingSessions, 
-    isSuccess: isSessionsSuccess,
-    isLoading: isSessionsLoading,
-    isError: isSessionsError,
-  } = useSessions({ meeting_key });
-  const {
-    data: meetingDrivers, 
-    isSuccess: isDriversSuccess,
-    isLoading: isDriversLoading,
-    isError: isDriversError,
-  } = useDrivers({ meeting_key });
-
-  if (isSessionsSuccess && meetingSessions) data.setSessions(meetingSessions);
-  if (isDriversSuccess && meetingDrivers) data.setDrivers(meetingDrivers);
   
   return (
     <>
@@ -73,43 +60,27 @@ export const MeetingClickResults: FC<MeetingClickResultsProps> = ({ meeting_key 
                 <tr>
                   <th>Sessions</th>
                   <td>
-                    { isSessionsLoading && 
-                      <Placeholder.Button
-                        className='meeting-view-button'
-                        variant='outline-light'
-                        xs={6}
-                      />}
-                    { isSessionsError && <p>Error fetching sessions</p> }
-                    { isSessionsSuccess && 
-                      <Button 
-                        size="sm"
-                        variant="outline-light"
-                        className='meeting-view-button'
-                      >
-                        View Sessions
-                      </Button>
-                    }
+                    <Button 
+                      size="sm"
+                      variant="outline-light"
+                      className='meeting-view-button'
+                      onClick={() => navigate(`/home/sessions?meeting_key=${data.meeting_key}`)}
+                    >
+                      View Sessions
+                    </Button>
                   </td>
                 </tr>
                 <tr>
                   <th>Drivers</th>
                   <td>
-                    { isDriversLoading && 
-                      <Placeholder.Button
-                        className='meeting-view-button'
-                        variant='outline-light'
-                        xs={6}
-                      />}
-                    { isDriversError && <p>Error fetching drivers</p> }
-                    { isDriversSuccess && 
-                      <Button 
-                        size="sm"
-                        variant="outline-light"
-                        className='meeting-view-button'
-                      >
-                        View Drivers
-                      </Button>
-                    }
+                    <Button 
+                      size="sm"
+                      variant="outline-light"
+                      className='meeting-view-button'
+                      onClick={() => navigate(`/home/drivers?meeting_key=${data.meeting_key}`)}
+                    >
+                      View Drivers
+                    </Button>
                   </td>
                 </tr>
               </tbody>
